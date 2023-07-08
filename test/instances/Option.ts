@@ -1,0 +1,251 @@
+/**
+ * @since 1.0.0
+ */
+import { dual } from "@effect/data/Function"
+import type { Kind, TypeLambda } from "@effect/data/HKT"
+import * as Option from "@effect/data/Option"
+import type * as alternative from "@effect/typeclass/Alternative"
+import type * as applicative from "@effect/typeclass/Applicative"
+import type * as chainable from "@effect/typeclass/Chainable"
+import type * as coproduct_ from "@effect/typeclass/Coproduct"
+import * as covariant from "@effect/typeclass/Covariant"
+import type * as filterable from "@effect/typeclass/Filterable"
+import type * as flatMap_ from "@effect/typeclass/FlatMap"
+import type * as foldable from "@effect/typeclass/Foldable"
+import type * as invariant from "@effect/typeclass/Invariant"
+import type * as monad from "@effect/typeclass/Monad"
+import type * as of_ from "@effect/typeclass/Of"
+import type * as pointed from "@effect/typeclass/Pointed"
+import type * as product_ from "@effect/typeclass/Product"
+import type * as semiAlternative from "@effect/typeclass/SemiAlternative"
+import type * as semiApplicative from "@effect/typeclass/SemiApplicative"
+import type * as semiCoproduct from "@effect/typeclass/SemiCoproduct"
+import type * as semiProduct from "@effect/typeclass/SemiProduct"
+import type * as traversable from "@effect/typeclass/Traversable"
+
+const of = Option.some
+const map = Option.map
+const flatMap = Option.flatMap
+const productAll = Option.all
+const coproductAll = Option.firstSomeOf
+const zero = Option.none
+
+const imap = covariant.imap<Option.OptionTypeLambda>(map)
+
+/**
+ * @since 1.0.0
+ */
+export const Covariant: covariant.Covariant<Option.OptionTypeLambda> = {
+  imap,
+  map
+}
+
+/**
+ * @since 1.0.0
+ */
+export const Invariant: invariant.Invariant<Option.OptionTypeLambda> = {
+  imap
+}
+
+/**
+ * @since 1.0.0
+ */
+export const Of: of_.Of<Option.OptionTypeLambda> = {
+  of
+}
+
+/**
+ * @since 1.0.0
+ */
+export const Pointed: pointed.Pointed<Option.OptionTypeLambda> = {
+  of,
+  imap,
+  map
+}
+
+/**
+ * @since 1.0.0
+ */
+export const FlatMap: flatMap_.FlatMap<Option.OptionTypeLambda> = {
+  flatMap
+}
+
+/**
+ * @since 1.0.0
+ */
+export const Chainable: chainable.Chainable<Option.OptionTypeLambda> = {
+  imap,
+  map,
+  flatMap
+}
+
+/**
+ * @since 1.0.0
+ */
+export const Monad: monad.Monad<Option.OptionTypeLambda> = {
+  imap,
+  of,
+  map,
+  flatMap
+}
+
+const product = <A, B>(self: Option.Option<A>, that: Option.Option<B>): Option.Option<[A, B]> =>
+  Option.isSome(self) && Option.isSome(that) ? Option.some([self.value, that.value]) : Option.none()
+
+const productMany = <A>(
+  self: Option.Option<A>,
+  collection: Iterable<Option.Option<A>>
+): Option.Option<[A, ...Array<A>]> => {
+  if (Option.isNone(self)) {
+    return Option.none()
+  }
+  const out: [A, ...Array<A>] = [self.value]
+  for (const o of collection) {
+    if (Option.isNone(o)) {
+      return Option.none()
+    }
+    out.push(o.value)
+  }
+  return Option.some(out)
+}
+
+/**
+ * @since 1.0.0
+ */
+export const SemiProduct: semiProduct.SemiProduct<Option.OptionTypeLambda> = {
+  imap,
+  product,
+  productMany
+}
+
+/**
+ * @since 1.0.0
+ */
+export const Product: product_.Product<Option.OptionTypeLambda> = {
+  of,
+  imap,
+  product,
+  productMany,
+  productAll
+}
+
+/**
+ * @since 1.0.0
+ */
+export const SemiApplicative: semiApplicative.SemiApplicative<Option.OptionTypeLambda> = {
+  imap,
+  map,
+  product,
+  productMany
+}
+
+/**
+ * @since 1.0.0
+ */
+export const Applicative: applicative.Applicative<Option.OptionTypeLambda> = {
+  imap,
+  of,
+  map,
+  product,
+  productMany,
+  productAll
+}
+
+const coproduct = <A, B>(self: Option.Option<A>, that: Option.Option<B>): Option.Option<A | B> =>
+  Option.isSome(self) ? self : that
+
+const coproductMany = <A>(
+  self: Option.Option<A>,
+  collection: Iterable<Option.Option<A>>
+): Option.Option<A> => Option.isSome(self) ? self : Option.firstSomeOf(collection)
+
+/**
+ * @since 1.0.0
+ */
+export const SemiCoproduct: semiCoproduct.SemiCoproduct<Option.OptionTypeLambda> = {
+  imap,
+  coproduct,
+  coproductMany
+}
+
+/**
+ * @since 1.0.0
+ */
+export const Coproduct: coproduct_.Coproduct<Option.OptionTypeLambda> = {
+  imap,
+  coproduct,
+  coproductMany,
+  zero,
+  coproductAll
+}
+
+/**
+ * @since 1.0.0
+ */
+export const SemiAlternative: semiAlternative.SemiAlternative<Option.OptionTypeLambda> = {
+  map,
+  imap,
+  coproduct,
+  coproductMany
+}
+
+/**
+ * @since 1.0.0
+ */
+export const Alternative: alternative.Alternative<Option.OptionTypeLambda> = {
+  map,
+  imap,
+  coproduct,
+  coproductMany,
+  coproductAll,
+  zero
+}
+
+/**
+ * @since 1.0.0
+ */
+export const Foldable: foldable.Foldable<Option.OptionTypeLambda> = {
+  reduce: dual(
+    3,
+    <A, B>(self: Option.Option<A>, b: B, f: (b: B, a: A) => B): B =>
+      Option.isNone(self) ? b : f(b, self.value)
+  )
+}
+
+/**
+ * @since 1.0.0
+ */
+export const Filterable: filterable.Filterable<Option.OptionTypeLambda> = {
+  partitionMap: Option.partitionMap,
+  filterMap: Option.filterMap
+}
+
+/**
+ * @since 1.0.0
+ */
+export const traverse = <F extends TypeLambda>(
+  F: applicative.Applicative<F>
+): {
+  <A, R, O, E, B>(
+    f: (a: A) => Kind<F, R, O, E, B>
+  ): (self: Option.Option<A>) => Kind<F, R, O, E, Option.Option<B>>
+  <A, R, O, E, B>(
+    self: Option.Option<A>,
+    f: (a: A) => Kind<F, R, O, E, B>
+  ): Kind<F, R, O, E, Option.Option<B>>
+} =>
+  dual(
+    2,
+    <A, R, O, E, B>(
+      self: Option.Option<A>,
+      f: (a: A) => Kind<F, R, O, E, B>
+    ): Kind<F, R, O, E, Option.Option<B>> =>
+      Option.isNone(self) ? F.of(Option.none()) : F.map(f(self.value), Option.some)
+  )
+
+/**
+ * @since 1.0.0
+ */
+export const Traversable: traversable.Traversable<Option.OptionTypeLambda> = {
+  traverse
+}
