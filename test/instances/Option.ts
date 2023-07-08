@@ -1,4 +1,5 @@
 /**
+ * @category instances
  * @since 1.0.0
  */
 import { dual } from "@effect/data/Function"
@@ -29,10 +30,13 @@ const flatMap = Option.flatMap
 const productAll = Option.all
 const coproductAll = Option.firstSomeOf
 const zero = Option.none
+const product = Option.product
+const productMany = Option.productMany
 
 const imap = covariant.imap<Option.OptionTypeLambda>(map)
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const Covariant: covariant.Covariant<Option.OptionTypeLambda> = {
@@ -41,6 +45,7 @@ export const Covariant: covariant.Covariant<Option.OptionTypeLambda> = {
 }
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const Invariant: invariant.Invariant<Option.OptionTypeLambda> = {
@@ -48,6 +53,7 @@ export const Invariant: invariant.Invariant<Option.OptionTypeLambda> = {
 }
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const Of: of_.Of<Option.OptionTypeLambda> = {
@@ -55,6 +61,7 @@ export const Of: of_.Of<Option.OptionTypeLambda> = {
 }
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const Pointed: pointed.Pointed<Option.OptionTypeLambda> = {
@@ -64,6 +71,7 @@ export const Pointed: pointed.Pointed<Option.OptionTypeLambda> = {
 }
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const FlatMap: flatMap_.FlatMap<Option.OptionTypeLambda> = {
@@ -71,6 +79,7 @@ export const FlatMap: flatMap_.FlatMap<Option.OptionTypeLambda> = {
 }
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const Chainable: chainable.Chainable<Option.OptionTypeLambda> = {
@@ -80,6 +89,7 @@ export const Chainable: chainable.Chainable<Option.OptionTypeLambda> = {
 }
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const Monad: monad.Monad<Option.OptionTypeLambda> = {
@@ -89,27 +99,8 @@ export const Monad: monad.Monad<Option.OptionTypeLambda> = {
   flatMap
 }
 
-const product = <A, B>(self: Option.Option<A>, that: Option.Option<B>): Option.Option<[A, B]> =>
-  Option.isSome(self) && Option.isSome(that) ? Option.some([self.value, that.value]) : Option.none()
-
-const productMany = <A>(
-  self: Option.Option<A>,
-  collection: Iterable<Option.Option<A>>
-): Option.Option<[A, ...Array<A>]> => {
-  if (Option.isNone(self)) {
-    return Option.none()
-  }
-  const out: [A, ...Array<A>] = [self.value]
-  for (const o of collection) {
-    if (Option.isNone(o)) {
-      return Option.none()
-    }
-    out.push(o.value)
-  }
-  return Option.some(out)
-}
-
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const SemiProduct: semiProduct.SemiProduct<Option.OptionTypeLambda> = {
@@ -119,6 +110,7 @@ export const SemiProduct: semiProduct.SemiProduct<Option.OptionTypeLambda> = {
 }
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const Product: product_.Product<Option.OptionTypeLambda> = {
@@ -130,6 +122,7 @@ export const Product: product_.Product<Option.OptionTypeLambda> = {
 }
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const SemiApplicative: semiApplicative.SemiApplicative<Option.OptionTypeLambda> = {
@@ -140,6 +133,7 @@ export const SemiApplicative: semiApplicative.SemiApplicative<Option.OptionTypeL
 }
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const Applicative: applicative.Applicative<Option.OptionTypeLambda> = {
@@ -160,6 +154,7 @@ const coproductMany = <A>(
 ): Option.Option<A> => Option.isSome(self) ? self : Option.firstSomeOf(collection)
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const SemiCoproduct: semiCoproduct.SemiCoproduct<Option.OptionTypeLambda> = {
@@ -169,6 +164,7 @@ export const SemiCoproduct: semiCoproduct.SemiCoproduct<Option.OptionTypeLambda>
 }
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const Coproduct: coproduct_.Coproduct<Option.OptionTypeLambda> = {
@@ -180,6 +176,7 @@ export const Coproduct: coproduct_.Coproduct<Option.OptionTypeLambda> = {
 }
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const SemiAlternative: semiAlternative.SemiAlternative<Option.OptionTypeLambda> = {
@@ -190,6 +187,7 @@ export const SemiAlternative: semiAlternative.SemiAlternative<Option.OptionTypeL
 }
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const Alternative: alternative.Alternative<Option.OptionTypeLambda> = {
@@ -202,6 +200,7 @@ export const Alternative: alternative.Alternative<Option.OptionTypeLambda> = {
 }
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const Foldable: foldable.Foldable<Option.OptionTypeLambda> = {
@@ -213,6 +212,7 @@ export const Foldable: foldable.Foldable<Option.OptionTypeLambda> = {
 }
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const Filterable: filterable.Filterable<Option.OptionTypeLambda> = {
@@ -220,10 +220,7 @@ export const Filterable: filterable.Filterable<Option.OptionTypeLambda> = {
   filterMap: Option.filterMap
 }
 
-/**
- * @since 1.0.0
- */
-export const traverse = <F extends TypeLambda>(
+const traverse = <F extends TypeLambda>(
   F: applicative.Applicative<F>
 ): {
   <A, R, O, E, B>(
@@ -244,6 +241,7 @@ export const traverse = <F extends TypeLambda>(
   )
 
 /**
+ * @category instances
  * @since 1.0.0
  */
 export const Traversable: traversable.Traversable<Option.OptionTypeLambda> = {
