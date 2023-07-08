@@ -1,11 +1,11 @@
 import * as Boolean from "@effect/data/Boolean"
 import * as Number from "@effect/data/Number"
 import * as O from "@effect/data/Option"
-import * as P from "@effect/data/Predicate"
 import * as String from "@effect/data/String"
 import * as _ from "@effect/typeclass/Product"
 import * as semigroup from "@effect/typeclass/Semigroup"
 import * as OptionInstances from "@effect/typeclass/test/instances/Option"
+import * as PredicateInstances from "@effect/typeclass/test/instances/Predicate"
 import * as U from "./util"
 
 describe.concurrent("Product", () => {
@@ -29,7 +29,7 @@ describe.concurrent("Product", () => {
     })
 
     it("Contravariant (Predicate)", () => {
-      const tuple = _.tuple(P.Product)
+      const tuple = _.tuple(PredicateInstances.Product)
       U.deepStrictEqual(tuple()([]), true)
       const p = tuple(String.isString, Number.isNumber, Boolean.isBoolean)
       U.deepStrictEqual(p(["a", 1, true]), true)
@@ -60,7 +60,7 @@ describe.concurrent("Product", () => {
     })
 
     it("Contravariant (Predicate)", () => {
-      const struct = _.struct(P.Product)
+      const struct = _.struct(PredicateInstances.Product)
       U.deepStrictEqual(struct({})({}), true)
       const p = struct({ x: String.isString, y: Number.isNumber, z: Boolean.isBoolean })
       U.deepStrictEqual(p({ x: "a", y: 1, z: true }), true)

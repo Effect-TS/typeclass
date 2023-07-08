@@ -1,10 +1,10 @@
 import { pipe } from "@effect/data/Function"
 import * as O from "@effect/data/Option"
-import * as P from "@effect/data/Predicate"
 import * as String from "@effect/data/String"
 import * as _ from "@effect/typeclass/Invariant"
 import * as semigroup from "@effect/typeclass/Semigroup"
 import * as OptionInstances from "@effect/typeclass/test/instances/Option"
+import * as PredicateInstances from "@effect/typeclass/test/instances/Predicate"
 import * as U from "./util"
 
 describe.concurrent("Invariant", () => {
@@ -28,7 +28,7 @@ describe.concurrent("Invariant", () => {
     })
 
     it("Contravariant (Predicate)", () => {
-      const bindTo = _.bindTo(P.Invariant)
+      const bindTo = _.bindTo(PredicateInstances.Invariant)
       const p = pipe(String.isString, bindTo("a"))
       U.deepStrictEqual(p({ a: "a" }), true)
       U.deepStrictEqual(p({ a: 1 }), false)
@@ -43,7 +43,7 @@ describe.concurrent("Invariant", () => {
     })
 
     it("Contravariant (Predicate)", () => {
-      const tupled = _.tupled(P.Invariant)
+      const tupled = _.tupled(PredicateInstances.Invariant)
       const p = pipe(String.isString, tupled)
       U.deepStrictEqual(p(["a"]), true)
       U.deepStrictEqual(p([1]), false)

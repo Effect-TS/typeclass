@@ -9,6 +9,7 @@ import * as semiApplicative from "@effect/typeclass/SemiApplicative"
 import * as semigroup from "@effect/typeclass/Semigroup"
 import * as _ from "@effect/typeclass/SemiProduct"
 import * as OptionInstances from "@effect/typeclass/test/instances/Option"
+import * as PredicateInstances from "@effect/typeclass/test/instances/Predicate"
 import * as ReadonlyArrayInstances from "@effect/typeclass/test/instances/ReadonlyArray"
 import * as U from "./util"
 
@@ -221,7 +222,7 @@ describe.concurrent("SemiProduct", () => {
     })
 
     it("Contravariant (Predicate)", () => {
-      const nonEmptyStruct = _.nonEmptyStruct(P.Product)
+      const nonEmptyStruct = _.nonEmptyStruct(PredicateInstances.Product)
       const p = nonEmptyStruct({ x: String.isString, y: Number.isNumber, z: Boolean.isBoolean })
       U.deepStrictEqual(p({ x: "a", y: 1, z: true }), true)
       U.deepStrictEqual(p({ x: "a", y: 1, z: "b" }), false)
