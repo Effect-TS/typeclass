@@ -5,12 +5,13 @@ import * as P from "@effect/data/Predicate"
 import * as String from "@effect/data/String"
 import * as _ from "@effect/typeclass/Product"
 import * as semigroup from "@effect/typeclass/Semigroup"
+import * as OptionInstances from "@effect/typeclass/test/instances/Option"
 import * as U from "./util"
 
 describe.concurrent("Product", () => {
   describe.concurrent("tuple", () => {
     it("Covariant (Option)", () => {
-      const tuple = _.tuple(O.Product)
+      const tuple = _.tuple(OptionInstances.Product)
       U.deepStrictEqual(tuple(), O.some([]))
       U.deepStrictEqual(tuple(O.some("a")), O.some(["a"]))
       U.deepStrictEqual(
@@ -38,7 +39,7 @@ describe.concurrent("Product", () => {
 
   describe.concurrent("struct", () => {
     it("Covariant (Option)", () => {
-      const struct = _.struct(O.Product)
+      const struct = _.struct(OptionInstances.Product)
       U.deepStrictEqual(struct({}), O.some({}))
       U.deepStrictEqual(struct({ a: O.some("a") }), O.some({ a: "a" }))
       U.deepStrictEqual(

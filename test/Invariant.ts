@@ -4,11 +4,12 @@ import * as P from "@effect/data/Predicate"
 import * as String from "@effect/data/String"
 import * as _ from "@effect/typeclass/Invariant"
 import * as semigroup from "@effect/typeclass/Semigroup"
+import * as OptionInstances from "@effect/typeclass/test/instances/Option"
 import * as U from "./util"
 
 describe.concurrent("Invariant", () => {
   it("imapComposition", () => {
-    const imap = _.imapComposition(semigroup.Invariant, O.Invariant)
+    const imap = _.imapComposition(semigroup.Invariant, OptionInstances.Invariant)
     const S = imap(O.getOptionalMonoid(String.Semigroup), (s) => [s], ([s]) => s)
     U.deepStrictEqual(S.combine(O.none(), O.none()), O.none())
     U.deepStrictEqual(S.combine(O.none(), O.some(["b"])), O.some(["b"]))
@@ -21,7 +22,7 @@ describe.concurrent("Invariant", () => {
 
   describe.concurrent("bindTo", () => {
     it("Covariant (Option)", () => {
-      const bindTo = _.bindTo(O.Invariant)
+      const bindTo = _.bindTo(OptionInstances.Invariant)
       U.deepStrictEqual(pipe(O.none(), bindTo("a")), O.none())
       U.deepStrictEqual(pipe(O.some(1), bindTo("a")), O.some({ a: 1 }))
     })
@@ -36,7 +37,7 @@ describe.concurrent("Invariant", () => {
 
   describe.concurrent("tupled", () => {
     it("Covariant (Option)", () => {
-      const tupled = _.tupled(O.Invariant)
+      const tupled = _.tupled(OptionInstances.Invariant)
       U.deepStrictEqual(pipe(O.none(), tupled), O.none())
       U.deepStrictEqual(pipe(O.some(1), tupled), O.some([1]))
     })

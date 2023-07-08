@@ -12,7 +12,8 @@ import * as semigroup from "@effect/typeclass/Semigroup"
  * @category type class
  * @since 1.0.0
  */
-export interface Bounded<A> extends Order<A> {
+export interface Bounded<A> {
+  readonly compare: Order<A>
   readonly maxBound: A
   readonly minBound: A
 }
@@ -32,7 +33,7 @@ export interface BoundedTypeLambda extends TypeLambda {
  * @since 1.0.0
  */
 export const min = <A>(B: Bounded<A>): Monoid<A> =>
-  monoid.fromSemigroup(semigroup.min(B), B.maxBound)
+  monoid.fromSemigroup(semigroup.min(B.compare), B.maxBound)
 
 /**
  * `Monoid` that returns last maximum of elements.
@@ -41,16 +42,17 @@ export const min = <A>(B: Bounded<A>): Monoid<A> =>
  * @since 1.0.0
  */
 export const max = <A>(B: Bounded<A>): Monoid<A> =>
-  monoid.fromSemigroup(semigroup.max(B), B.minBound)
+  monoid.fromSemigroup(semigroup.max(B.compare), B.minBound)
 
 /**
  * @category instances
  * @since 1.0.0
  */
-export const number: Bounded<number> = Object.assign({}, order.number, {
+export const number: Bounded<number> = {
+  compare: order.number,
   maxBound: Infinity,
   minBound: -Infinity
-})
+}
 
 /**
  * Checks if a value is between the lower and upper limit of a bound.
@@ -59,7 +61,7 @@ export const number: Bounded<number> = Object.assign({}, order.number, {
  * @since 1.0.0
  */
 export const between = <A>(B: Bounded<A>): (a: A) => boolean =>
-  order.between(B)(B.minBound, B.maxBound)
+  order.between(B.compare)(B.minBound, B.maxBound)
 
 /**
  * Clamp a value between `minBound` and `maxBound` values.
@@ -67,7 +69,8 @@ export const between = <A>(B: Bounded<A>): (a: A) => boolean =>
  * @category utils
  * @since 1.0.0
  */
-export const clamp = <A>(B: Bounded<A>): (a: A) => A => order.clamp(B)(B.minBound, B.maxBound)
+export const clamp = <A>(B: Bounded<A>): (a: A) => A =>
+  order.clamp(B.compare)(B.minBound, B.maxBound)
 
 /**
  * Reverses the `Order` of a `Bounded` and flips `maxBound` and `minBound` values.
@@ -75,8 +78,8 @@ export const clamp = <A>(B: Bounded<A>): (a: A) => A => order.clamp(B)(B.minBoun
  * @category utils
  * @since 1.0.0
  */
-export const reverse = <A>(B: Bounded<A>): Bounded<A> =>
-  Object.assign({}, order.reverse(B), {
-    minBound: B.maxBound,
-    maxBound: B.minBound
-  })
+export const reverse = <A>(B: Bounded<A>): Bounded<A> => ({
+  compare: order.reverse(B.compare),
+  minBound: B.maxBound,
+  maxBound: B.minBound
+})

@@ -1,6 +1,6 @@
+import * as order from "@effect/data/Order"
 import * as P from "@effect/data/Predicate"
 import * as S from "@effect/data/String"
-import * as order from "@effect/data/typeclass/Order"
 import * as _ from "@effect/typeclass/Contravariant"
 import * as U from "./util"
 
