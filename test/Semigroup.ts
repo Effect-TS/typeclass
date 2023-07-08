@@ -121,4 +121,39 @@ describe.concurrent("Semigroup", () => {
     U.deepStrictEqual(S.combine(["a1", "b1"], ["a2"]), ["a1a2"])
     U.deepStrictEqual(S.combine([], []), [])
   })
+
+  it("numberMultiply", () => {
+    const S = Semigroup.numberMultiply
+    U.deepStrictEqual(S.combine(2, 3), 6)
+    U.deepStrictEqual(S.combineMany(1, [1, 2, 3]), 6)
+    U.deepStrictEqual(S.combineMany(1, [1, 0, 3]), 0)
+    U.deepStrictEqual(S.combineMany(0, [1, 2, 3]), 0)
+  })
+
+  it("bigintMultiply", () => {
+    const S = Semigroup.bigintMultiply
+    U.deepStrictEqual(S.combine(2n, 3n), 6n)
+    U.deepStrictEqual(S.combineMany(1n, [1n, 2n, 3n]), 6n)
+    U.deepStrictEqual(S.combineMany(1n, [1n, 0n, 3n]), 0n)
+    U.deepStrictEqual(S.combineMany(0n, [1n, 2n, 3n]), 0n)
+  })
+
+  it("booleanEvery", () => {
+    const S = Semigroup.booleanEvery
+    U.deepStrictEqual(S.combine(true, true), true)
+    U.deepStrictEqual(S.combine(true, false), false)
+    U.deepStrictEqual(S.combineMany(true, [true, true, true]), true)
+    U.deepStrictEqual(S.combineMany(false, [true, true, true]), false)
+    U.deepStrictEqual(S.combineMany(true, [true, false, true]), false)
+  })
+
+  it("booleanSome", () => {
+    const S = Semigroup.booleanSome
+    U.deepStrictEqual(S.combine(true, true), true)
+    U.deepStrictEqual(S.combine(true, false), true)
+    U.deepStrictEqual(S.combine(false, false), false)
+    U.deepStrictEqual(S.combineMany(false, [false, false, false]), false)
+    U.deepStrictEqual(S.combineMany(true, [false, false, false]), true)
+    U.deepStrictEqual(S.combineMany(false, [false, true, false]), true)
+  })
 })

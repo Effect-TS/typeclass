@@ -116,4 +116,4 @@ export const bindDiscard: {
     name: Exclude<N, keyof A>,
     that: Predicate.Predicate<B>
   ): Predicate.Predicate<{ readonly [K in N | keyof A]: K extends keyof A ? A[K] : B }>
-} = semiProduct.bindDiscard(SemiProduct)
+} = semiProduct.andThenBind(SemiProduct)

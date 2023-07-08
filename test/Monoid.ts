@@ -56,4 +56,9 @@ describe.concurrent("Monoid", () => {
     U.deepStrictEqual(M.empty, ["", 0])
     U.deepStrictEqual(M.combine(["a", 10], ["b", 20]), ["ab", 30])
   })
+
+  it("array", () => {
+    const M = Monoid.array<number>()
+    U.deepStrictEqual(M.combine([1, 2, 3], [4, 5, 6]), [1, 2, 3, 4, 5, 6])
+  })
 })

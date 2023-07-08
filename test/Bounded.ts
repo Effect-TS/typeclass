@@ -26,4 +26,14 @@ describe.concurrent("Bounded", () => {
     U.deepStrictEqual(between(5), true)
     U.deepStrictEqual(between(6), false)
   })
+
+  it("min", () => {
+    const Monoid = _.min({ compare: Number.Order, minBound: 0, maxBound: 10 })
+    U.deepStrictEqual(Monoid.combine(1, 2), 1)
+  })
+
+  it("max", () => {
+    const Monoid = _.max({ compare: Number.Order, minBound: 0, maxBound: 10 })
+    U.deepStrictEqual(Monoid.combine(1, 2), 2)
+  })
 })

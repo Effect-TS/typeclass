@@ -41,4 +41,11 @@ describe.concurrent("SemiApplicative", () => {
 
     U.deepStrictEqual(S.combineMany(O.some("a"), [O.some("b"), O.some("c")]), O.some("abc"))
   })
+
+  it("lift2", () => {
+    const lift2 = _.lift2(OptionInstances.SemiApplicative)
+    const sum = (a: number, b: number) => a + b
+    const lifted = lift2(sum)
+    U.deepStrictEqual(lifted(O.some(1), O.some(2)), O.some(3))
+  })
 })

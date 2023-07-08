@@ -143,7 +143,7 @@ describe.concurrent("SemiProduct", () => {
 
   describe.concurrent("andThenBind", () => {
     it("Covariant (Option)", () => {
-      const andThenBind = _.bindDiscard(OptionInstances.Applicative)
+      const andThenBind = _.andThenBind(OptionInstances.Applicative)
       U.deepStrictEqual(pipe(O.some({ a: 1 }), andThenBind("b", O.none())), O.none())
       U.deepStrictEqual(pipe(O.some({ a: 1 }), andThenBind("b", O.some(2))), O.some({ a: 1, b: 2 }))
     })
