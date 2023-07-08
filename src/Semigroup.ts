@@ -219,14 +219,6 @@ export const reverse = <A>(S: Semigroup<A>): Semigroup<A> =>
  * @param S - The `Semigroup` instance.
  * @param separator - The separator value.
  *
- * @example
- * import { intercalate } from "@effect/typeclass/Semigroup"
- * import { Semigroup } from "@effect/data/String"
- *
- * const S = intercalate(Semigroup, " + ")
- *
- * assert.strictEqual(S.combine('a', 'b'), 'a + b')
- *
  * @since 1.0.0
  */
 export const intercalate: {

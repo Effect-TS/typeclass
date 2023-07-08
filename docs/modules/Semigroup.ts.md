@@ -1,6 +1,6 @@
 ---
 title: Semigroup.ts
-nav_order: 22
+nav_order: 21
 parent: Modules
 ---
 
@@ -375,17 +375,6 @@ export declare const intercalate: {
   <A>(separator: A): (S: Semigroup<A>) => Semigroup<A>
   <A>(S: Semigroup<A>, separator: A): Semigroup<A>
 }
-```
-
-**Example**
-
-```ts
-import { intercalate } from '@effect/typeclass/Semigroup'
-import { Semigroup } from '@effect/data/String'
-
-const S = intercalate(Semigroup, ' + ')
-
-assert.strictEqual(S.combine('a', 'b'), 'a + b')
 ```
 
 Added in v1.0.0

@@ -88,7 +88,8 @@ Added in v1.0.0
 **Signature**
 
 ```ts
-export interface Bounded<A> extends Order<A> {
+export interface Bounded<A> {
+  readonly compare: Order<A>
   readonly maxBound: A
   readonly minBound: A
 }
