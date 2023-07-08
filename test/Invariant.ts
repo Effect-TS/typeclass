@@ -2,15 +2,15 @@ import { pipe } from "@effect/data/Function"
 import * as O from "@effect/data/Option"
 import * as String from "@effect/data/String"
 import * as _ from "@effect/typeclass/Invariant"
-import * as semigroup from "@effect/typeclass/Semigroup"
+import * as Semigroup from "@effect/typeclass/Semigroup"
 import * as OptionInstances from "@effect/typeclass/test/instances/Option"
 import * as PredicateInstances from "@effect/typeclass/test/instances/Predicate"
 import * as U from "./util"
 
 describe.concurrent("Invariant", () => {
   it("imapComposition", () => {
-    const imap = _.imapComposition(semigroup.Invariant, OptionInstances.Invariant)
-    const S = imap(O.getOptionalMonoid(String.Semigroup), (s) => [s], ([s]) => s)
+    const imap = _.imapComposition(Semigroup.Invariant, OptionInstances.Invariant)
+    const S = imap(OptionInstances.getOptionalMonoid(Semigroup.string), (s) => [s], ([s]) => s)
     U.deepStrictEqual(S.combine(O.none(), O.none()), O.none())
     U.deepStrictEqual(S.combine(O.none(), O.some(["b"])), O.some(["b"]))
     U.deepStrictEqual(S.combine(O.some(["a"]), O.none()), O.some(["a"]))

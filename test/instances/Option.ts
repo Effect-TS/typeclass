@@ -15,12 +15,16 @@ import type * as flatMap_ from "@effect/typeclass/FlatMap"
 import type * as foldable from "@effect/typeclass/Foldable"
 import type * as invariant from "@effect/typeclass/Invariant"
 import type * as monad from "@effect/typeclass/Monad"
+import type { Monoid } from "@effect/typeclass/Monoid"
+import * as monoid from "@effect/typeclass/Monoid"
 import type * as of_ from "@effect/typeclass/Of"
 import type * as pointed from "@effect/typeclass/Pointed"
 import type * as product_ from "@effect/typeclass/Product"
 import type * as semiAlternative from "@effect/typeclass/SemiAlternative"
 import type * as semiApplicative from "@effect/typeclass/SemiApplicative"
 import type * as semiCoproduct from "@effect/typeclass/SemiCoproduct"
+import type { Semigroup } from "@effect/typeclass/Semigroup"
+import * as semigroup from "@effect/typeclass/Semigroup"
 import type * as semiProduct from "@effect/typeclass/SemiProduct"
 import type * as traversable from "@effect/typeclass/Traversable"
 
@@ -247,3 +251,21 @@ const traverse = <F extends TypeLambda>(
 export const Traversable: traversable.Traversable<Option.OptionTypeLambda> = {
   traverse
 }
+
+/**
+ * @category instances
+ * @since 1.0.0
+ */
+export const getOptionalMonoid = <A>(
+  Semigroup: Semigroup<A>
+): Monoid<Option.Option<A>> =>
+  monoid.fromSemigroup(
+    semigroup.make((self, that) =>
+      Option.isNone(self) ?
+        that :
+        Option.isNone(that) ?
+        self :
+        Option.some(Semigroup.combine(self.value, that.value))
+    ),
+    Option.none()
+  )

@@ -6,7 +6,7 @@ import * as O from "@effect/data/Option"
 import * as P from "@effect/data/Predicate"
 import * as String from "@effect/data/String"
 import * as semiApplicative from "@effect/typeclass/SemiApplicative"
-import * as semigroup from "@effect/typeclass/Semigroup"
+import * as Semigroup from "@effect/typeclass/Semigroup"
 import * as _ from "@effect/typeclass/SemiProduct"
 import * as OptionInstances from "@effect/typeclass/test/instances/Option"
 import * as PredicateInstances from "@effect/typeclass/test/instances/Predicate"
@@ -150,9 +150,9 @@ describe.concurrent("SemiProduct", () => {
 
     it("Contravariant (Predicate)", () => {
       const p = pipe(
-        P.Do(),
-        P.bindDiscard("x", String.isString),
-        P.bindDiscard("y", Number.isNumber)
+        PredicateInstances.Do(),
+        PredicateInstances.bindDiscard("x", String.isString),
+        PredicateInstances.bindDiscard("y", Number.isNumber)
       )
       U.deepStrictEqual(p({ x: "a", y: 1 }), true)
       U.deepStrictEqual(p({ x: "a", y: "x" }), false)
@@ -167,7 +167,7 @@ describe.concurrent("SemiProduct", () => {
     })
 
     it("Contravariant (Predicate)", () => {
-      const appendElement = _.appendElement(P.SemiProduct)
+      const appendElement = _.appendElement(PredicateInstances.SemiProduct)
       const p = pipe(P.tuple(String.isString, String.isString), appendElement(Number.isNumber))
       U.deepStrictEqual(p(["a", "b", 3]), true)
       U.deepStrictEqual(p(["a", "b", "c"]), false)
@@ -188,13 +188,13 @@ describe.concurrent("SemiProduct", () => {
     })
 
     it("Invariant (Semigroup)", () => {
-      const nonEmptyTuple = _.nonEmptyTuple(semigroup.SemiProduct)
-      const S = nonEmptyTuple(String.Semigroup, Number.SemigroupSum)
+      const nonEmptyTuple = _.nonEmptyTuple(Semigroup.SemiProduct)
+      const S = nonEmptyTuple(Semigroup.string, Semigroup.numberSum)
       U.deepStrictEqual(S.combine(["a", 2], ["b", 3]), ["ab", 5])
     })
 
     it("Contravariant (Predicate)", () => {
-      const nonEmptyTuple = _.nonEmptyTuple(P.SemiProduct)
+      const nonEmptyTuple = _.nonEmptyTuple(PredicateInstances.SemiProduct)
       const p = nonEmptyTuple(String.isString, Number.isNumber, Boolean.isBoolean)
       U.deepStrictEqual(p(["a", 1, true]), true)
       U.deepStrictEqual(p(["a", 1, "b"]), false)
@@ -216,8 +216,8 @@ describe.concurrent("SemiProduct", () => {
     })
 
     it("Invariant (Semigroup)", () => {
-      const nonEmptyStruct = _.nonEmptyStruct(semigroup.Product)
-      const S = nonEmptyStruct({ x: String.Semigroup, y: Number.SemigroupSum })
+      const nonEmptyStruct = _.nonEmptyStruct(Semigroup.Product)
+      const S = nonEmptyStruct({ x: Semigroup.string, y: Semigroup.numberSum })
       U.deepStrictEqual(S.combine({ x: "a", y: 2 }, { x: "b", y: 3 }), { x: "ab", y: 5 })
     })
 

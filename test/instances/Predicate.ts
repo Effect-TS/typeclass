@@ -4,9 +4,9 @@
 import * as Predicate from "@effect/data/Predicate"
 import * as contravariant from "@effect/typeclass/Contravariant"
 import type * as invariant from "@effect/typeclass/Invariant"
-import type * as of_ from "@effect/typeclass/Of"
+import * as of_ from "@effect/typeclass/Of"
 import type * as product_ from "@effect/typeclass/Product"
-import type * as semiProduct from "@effect/typeclass/SemiProduct"
+import * as semiProduct from "@effect/typeclass/SemiProduct"
 
 const contramap = Predicate.contramap
 
@@ -91,3 +91,29 @@ export const Product: product_.Product<Predicate.PredicateTypeLambda> = {
   productMany,
   productAll
 }
+
+/**
+ * @category do notation
+ * @since 1.0.0
+ */
+export const Do: () => Predicate.Predicate<{}> = of_.Do(Of)
+
+/**
+ * A variant of `bind` that sequentially ignores the scope.
+ *
+ * @category do notation
+ * @since 1.0.0
+ */
+export const bindDiscard: {
+  <N extends string, A extends object, B>(
+    name: Exclude<N, keyof A>,
+    that: Predicate.Predicate<B>
+  ): (
+    self: Predicate.Predicate<A>
+  ) => Predicate.Predicate<{ readonly [K in N | keyof A]: K extends keyof A ? A[K] : B }>
+  <A extends object, N extends string, B>(
+    self: Predicate.Predicate<A>,
+    name: Exclude<N, keyof A>,
+    that: Predicate.Predicate<B>
+  ): Predicate.Predicate<{ readonly [K in N | keyof A]: K extends keyof A ? A[K] : B }>
+} = semiProduct.bindDiscard(SemiProduct)

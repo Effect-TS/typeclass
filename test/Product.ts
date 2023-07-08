@@ -3,7 +3,7 @@ import * as Number from "@effect/data/Number"
 import * as O from "@effect/data/Option"
 import * as String from "@effect/data/String"
 import * as _ from "@effect/typeclass/Product"
-import * as semigroup from "@effect/typeclass/Semigroup"
+import * as Semigroup from "@effect/typeclass/Semigroup"
 import * as OptionInstances from "@effect/typeclass/test/instances/Option"
 import * as PredicateInstances from "@effect/typeclass/test/instances/Predicate"
 import * as U from "./util"
@@ -22,9 +22,9 @@ describe.concurrent("Product", () => {
     })
 
     it("Invariant (Semigroup)", () => {
-      const tuple = _.tuple(semigroup.Product)
+      const tuple = _.tuple(Semigroup.Product)
       U.deepStrictEqual(tuple().combine([], []), [])
-      const S = tuple(String.Semigroup, Number.SemigroupSum)
+      const S = tuple(Semigroup.string, Semigroup.numberSum)
       U.deepStrictEqual(S.combine(["a", 2], ["b", 3]), ["ab", 5])
     })
 
@@ -53,9 +53,9 @@ describe.concurrent("Product", () => {
     })
 
     it("Invariant (Semigroup)", () => {
-      const struct = _.struct(semigroup.Product)
+      const struct = _.struct(Semigroup.Product)
       U.deepStrictEqual(struct({}).combine({}, {}), {})
-      const S = struct({ x: String.Semigroup, y: Number.SemigroupSum })
+      const S = struct({ x: Semigroup.string, y: Semigroup.numberSum })
       U.deepStrictEqual(S.combine({ x: "a", y: 2 }, { x: "b", y: 3 }), { x: "ab", y: 5 })
     })
 
