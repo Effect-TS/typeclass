@@ -2,8 +2,8 @@
  * @since 1.0.0
  */
 import type { TypeLambda } from "@effect/data/HKT"
-import * as order from "@effect/data/typeclass/Order"
-import type { Order } from "@effect/data/typeclass/Order"
+import * as order from "@effect/data/Order"
+import type { Order } from "@effect/data/Order"
 import type { Monoid } from "@effect/typeclass/Monoid"
 import * as monoid from "@effect/typeclass/Monoid"
 import * as semigroup from "@effect/typeclass/Semigroup"
@@ -47,11 +47,10 @@ export const max = <A>(B: Bounded<A>): Monoid<A> =>
  * @category instances
  * @since 1.0.0
  */
-export const number: Bounded<number> = {
-  compare: order.number.compare,
+export const number: Bounded<number> = Object.assign({}, order.number, {
   maxBound: Infinity,
   minBound: -Infinity
-}
+})
 
 /**
  * Checks if a value is between the lower and upper limit of a bound.
@@ -76,8 +75,8 @@ export const clamp = <A>(B: Bounded<A>): (a: A) => A => order.clamp(B)(B.minBoun
  * @category utils
  * @since 1.0.0
  */
-export const reverse = <A>(B: Bounded<A>): Bounded<A> => ({
-  ...order.reverse(B),
-  minBound: B.maxBound,
-  maxBound: B.minBound
-})
+export const reverse = <A>(B: Bounded<A>): Bounded<A> =>
+  Object.assign({}, order.reverse(B), {
+    minBound: B.maxBound,
+    maxBound: B.minBound
+  })
