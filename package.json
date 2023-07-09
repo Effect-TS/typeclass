@@ -60,6 +60,7 @@
     "@babel/plugin-transform-modules-commonjs": "^7.22.5",
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.2",
+    "@definitelytyped/dtslint": "^0.0.163",
     "@effect-ts/build-utils": "0.40.7",
     "@effect-ts/core": "^0.60.5",
     "@effect/babel-plugin": "^0.2.0",
