@@ -5,20 +5,20 @@ import { dual, identity } from "@effect/data/Function"
 import type { Kind, TypeLambda } from "@effect/data/HKT"
 import * as readonlyArray from "@effect/data/ReadonlyArray"
 import type * as applicative from "@effect/typeclass/Applicative"
-import * as chainable from "@effect/typeclass/Chainable"
+import type * as chainable from "@effect/typeclass/Chainable"
 import * as covariant from "@effect/typeclass/Covariant"
 import type * as flatMap_ from "@effect/typeclass/FlatMap"
 import type * as foldable from "@effect/typeclass/Foldable"
-import * as invariant from "@effect/typeclass/Invariant"
+import type * as invariant from "@effect/typeclass/Invariant"
 import type * as monad from "@effect/typeclass/Monad"
-import * as of_ from "@effect/typeclass/Of"
+import type * as of_ from "@effect/typeclass/Of"
 import type * as pointed from "@effect/typeclass/Pointed"
 import type * as product_ from "@effect/typeclass/Product"
 import type * as semiAlternative from "@effect/typeclass/SemiAlternative"
 import type * as semiApplicative from "@effect/typeclass/SemiApplicative"
 import type * as semiCoproduct from "@effect/typeclass/SemiCoproduct"
 import type { Semigroup } from "@effect/typeclass/Semigroup"
-import * as semiProduct from "@effect/typeclass/SemiProduct"
+import type * as semiProduct from "@effect/typeclass/SemiProduct"
 import type * as traversable from "@effect/typeclass/Traversable"
 
 const of: <A>(a: A) => Identity<A> = identity
@@ -224,4 +224,3 @@ export const Foldable: foldable.Foldable<IdentityTypeLambda> = {
 export const Traversable: traversable.Traversable<IdentityTypeLambda> = {
   traverse
 }
-
