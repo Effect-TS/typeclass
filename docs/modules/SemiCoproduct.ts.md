@@ -1,6 +1,6 @@
 ---
 title: SemiCoproduct.ts
-nav_order: 20
+nav_order: 33
 parent: Modules
 ---
 

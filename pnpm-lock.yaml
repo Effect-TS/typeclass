@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@effect/data':
-    specifier: ^0.13.5
-    version: 0.13.5
+    specifier: ^0.16.0
+    version: 0.16.0
 
 devDependencies:
   '@babel/cli':
@@ -764,8 +764,8 @@ packages:
       '@babel/core': 7.22.8
     dev: true
 
-  /@effect/data@0.13.5:
-    resolution: {integrity: sha512-s9HYZkRHkN3doqOy+ICSKMr33hTe+YSod34Twt9oDI2OWgxoynsVjQ1gpM/BDn92SHv3Rgz6KTmVBKqYaqh/mQ==}
+  /@effect/data@0.16.0:
+    resolution: {integrity: sha512-ckZ/WvvI4zZGo+vRVTRBfBi4KvY9ZjLlnDWlrfhKnAJvgDu6SI8A5FJ8c/eJphmtLWNdoQx8j9pFhWLSIQe5RQ==}
     dev: false
 
   /@effect/docgen@0.1.2(@types/node@20.4.1)(typescript@5.1.6):

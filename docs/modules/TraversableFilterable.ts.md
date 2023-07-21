@@ -1,6 +1,6 @@
 ---
 title: TraversableFilterable.ts
-nav_order: 24
+nav_order: 37
 parent: Modules
 ---
 
