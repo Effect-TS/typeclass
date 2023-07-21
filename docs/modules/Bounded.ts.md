@@ -15,8 +15,6 @@ Added in v1.0.0
 - [constructors](#constructors)
   - [max](#max)
   - [min](#min)
-- [instances](#instances)
-  - [number](#number)
 - [predicates](#predicates)
   - [between](#between)
 - [type class](#type-class)
@@ -51,18 +49,6 @@ Added in v1.0.0
 
 ```ts
 export declare const min: <A>(B: Bounded<A>) => Monoid<A>
-```
-
-Added in v1.0.0
-
-# instances
-
-## number
-
-**Signature**
-
-```ts
-export declare const number: Bounded<number>
 ```
 
 Added in v1.0.0

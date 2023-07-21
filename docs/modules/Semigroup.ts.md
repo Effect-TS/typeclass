@@ -1,6 +1,6 @@
 ---
 title: Semigroup.ts
-nav_order: 21
+nav_order: 34
 parent: Modules
 ---
 
@@ -25,17 +25,8 @@ Added in v1.0.0
   - [Invariant](#invariant)
   - [Product](#product)
   - [SemiProduct](#semiproduct)
-  - [bigintMultiply](#bigintmultiply)
-  - [bigintSum](#bigintsum)
-  - [booleanEqv](#booleaneqv)
-  - [booleanEvery](#booleanevery)
-  - [booleanSome](#booleansome)
-  - [booleanXor](#booleanxor)
   - [first](#first)
   - [last](#last)
-  - [numberMultiply](#numbermultiply)
-  - [numberSum](#numbersum)
-  - [string](#string)
 - [type class](#type-class)
   - [Semigroup (interface)](#semigroup-interface)
 - [type lambdas](#type-lambdas)
@@ -183,78 +174,6 @@ export declare const SemiProduct: semiProduct.SemiProduct<SemigroupTypeLambda>
 
 Added in v1.0.0
 
-## bigintMultiply
-
-`bigint` semigroup under multiplication.
-
-**Signature**
-
-```ts
-export declare const bigintMultiply: Semigroup<bigint>
-```
-
-Added in v1.0.0
-
-## bigintSum
-
-`bigint` semigroup under addition.
-
-**Signature**
-
-```ts
-export declare const bigintSum: Semigroup<bigint>
-```
-
-Added in v1.0.0
-
-## booleanEqv
-
-`boolean` semigroup under equivalence.
-
-**Signature**
-
-```ts
-export declare const booleanEqv: Semigroup<boolean>
-```
-
-Added in v1.0.0
-
-## booleanEvery
-
-`boolean` semigroup under conjunction.
-
-**Signature**
-
-```ts
-export declare const booleanEvery: Semigroup<boolean>
-```
-
-Added in v1.0.0
-
-## booleanSome
-
-`boolean` semigroup under disjunction.
-
-**Signature**
-
-```ts
-export declare const booleanSome: Semigroup<boolean>
-```
-
-Added in v1.0.0
-
-## booleanXor
-
-`boolean` semigroup under exclusive disjunction.
-
-**Signature**
-
-```ts
-export declare const booleanXor: Semigroup<boolean>
-```
-
-Added in v1.0.0
-
 ## first
 
 Always return the first argument.
@@ -275,40 +194,6 @@ Always return the last argument.
 
 ```ts
 export declare const last: <A = never>() => Semigroup<A>
-```
-
-Added in v1.0.0
-
-## numberMultiply
-
-`number` semigroup under multiplication.
-
-**Signature**
-
-```ts
-export declare const numberMultiply: Semigroup<number>
-```
-
-Added in v1.0.0
-
-## numberSum
-
-`number` semigroup under addition.
-
-**Signature**
-
-```ts
-export declare const numberSum: Semigroup<number>
-```
-
-Added in v1.0.0
-
-## string
-
-**Signature**
-
-```ts
-export declare const string: Semigroup<string>
 ```
 
 Added in v1.0.0
