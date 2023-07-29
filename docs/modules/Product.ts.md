@@ -48,8 +48,8 @@ export declare const struct: <F extends TypeLambda>(
 ) => Kind<
   F,
   [R[keyof R]] extends [Kind<F, infer R, any, any, any>] ? R : never,
-  [R[keyof R]] extends [Kind<F, any, infer O, any, any>] ? O : never,
-  [R[keyof R]] extends [Kind<F, any, any, infer E, any>] ? E : never,
+  R[keyof R] extends never ? never : [R[keyof R]] extends [Kind<F, any, infer O, any, any>] ? O : never,
+  R[keyof R] extends never ? never : [R[keyof R]] extends [Kind<F, any, any, infer E, any>] ? E : never,
   { [K in keyof R]: [R[K]] extends [Kind<F, any, any, any, infer A>] ? A : never }
 >
 ```
@@ -68,8 +68,8 @@ export declare const tuple: <F extends TypeLambda>(
 ) => Kind<
   F,
   [T[number]] extends [Kind<F, infer R, any, any, any>] ? R : never,
-  [T[number]] extends [Kind<F, any, infer O, any, any>] ? O : never,
-  [T[number]] extends [Kind<F, any, any, infer E, any>] ? E : never,
+  T[number] extends never ? never : [T[number]] extends [Kind<F, any, infer O, any, any>] ? O : never,
+  T[number] extends never ? never : [T[number]] extends [Kind<F, any, any, infer E, any>] ? E : never,
   { [I in keyof T]: [T[I]] extends [Kind<F, any, any, any, infer A>] ? A : never }
 >
 ```
