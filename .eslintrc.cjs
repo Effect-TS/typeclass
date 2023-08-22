@@ -21,7 +21,7 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@repo-tooling/dprint/recommended"
+    "plugin:@effect/recommended"
   ],
   plugins: ["deprecation", "import", "sort-destructure-keys", "simple-import-sort", "codegen"],
   rules: {
@@ -42,7 +42,7 @@ module.exports = {
     "import/order": "off",
     "simple-import-sort/imports": "off",
     "sort-destructure-keys/sort-destructure-keys": "error",
-    "deprecation/deprecation": "off",
+    "deprecation/deprecation": "error",
     "@typescript-eslint/array-type": ["warn", { "default": "generic", "readonly": "generic" }],
     "@typescript-eslint/prefer-readonly": "warn",
     "@typescript-eslint/member-delimiter-style": 0,
@@ -63,7 +63,7 @@ module.exports = {
     "@typescript-eslint/no-array-constructor": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-namespace": "off",
-    "@repo-tooling/dprint/dprint": [
+    "@effect/dprint": [
       "error",
       {
         config: {
