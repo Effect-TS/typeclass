@@ -1,6 +1,6 @@
 # Introduction
 
-The functional abstractions in `@effect/data` can be broadly divided into two categories.
+The functional abstractions in `effect` can be broadly divided into two categories.
 
 - Abstractions For Concrete Types - These abstractions define properties of concrete types, such as `number` and `string`, as well as ways of combining those values.
 - Abstractions For Parameterized Types - These abstractions define properties of parameterized types such as `ReadonlyArray` and `Option` and ways of combining them.
