@@ -1,6 +1,6 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.preferences.importModuleSpecifier": "project-relative",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "editor.formatOnSave": true,
   "eslint.format.enable": true,
@@ -22,7 +22,11 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
-  "eslint.validate": ["markdown", "javascript", "typescript"],
+  "eslint.validate": [
+    "markdown",
+    "javascript",
+    "typescript"
+  ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
@@ -43,5 +47,33 @@
   "files.watcherExclude": {
     "**/target": true
   },
-  "files.insertFinalNewline": true
+  "files.insertFinalNewline": true,
+  "files.exclude": {
+    "dist": true,
+    "Alternative": true,
+    "Applicative": true,
+    "Bicovariant": true,
+    "Bounded": true,
+    "Chainable": true,
+    "Contravariant": true,
+    "Coproduct": true,
+    "Covariant": true,
+    "Filterable": true,
+    "FlatMap": true,
+    "Foldable": true,
+    "Invariant": true,
+    "Monad": true,
+    "Monoid": true,
+    "Of": true,
+    "Pointed": true,
+    "Product": true,
+    "SemiAlternative": true,
+    "SemiApplicative": true,
+    "SemiCoproduct": true,
+    "SemiProduct": true,
+    "Semigroup": true,
+    "Traversable": true,
+    "TraversableFilterable": true,
+    "data": true
+  }
 }
