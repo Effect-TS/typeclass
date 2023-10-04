@@ -2,8 +2,7 @@
   "name": "@effect/typeclass",
   "version": "0.6.2",
   "publishConfig": {
-    "access": "public",
-    "directory": "dist"
+    "access": "public"
   },
   "repository": {
     "type": "git",
