@@ -60,8 +60,8 @@ devDependencies:
     specifier: ^8.2.0
     version: 8.2.0
   effect:
-    specifier: 2.0.0-next.45
-    version: 2.0.0-next.45
+    specifier: 2.0.0-next.46
+    version: 2.0.0-next.46
   error-stack-parser:
     specifier: ^2.1.4
     version: 2.1.4
@@ -2864,8 +2864,8 @@ packages:
       safer-buffer: 2.1.2
     dev: true
 
-  /effect@2.0.0-next.45:
-    resolution: {integrity: sha512-cSapc9midRXsOJUx8o9lIzTPJW2NSviQ1jjHlSZM8UJbteLLqcb02ung+4pLjGyouP2AMQlgo02F7b2MvTWxcQ==}
+  /effect@2.0.0-next.46:
+    resolution: {integrity: sha512-il80bMS05oRGkBvJFX2swLflo1HL5jnnyPemr+ix+9A7Wwhm1ngZmWGgTgp1q5mRkv3voCv3DzJff7DGlrTNTg==}
     dev: true
 
   /electron-to-chromium@1.4.541:
