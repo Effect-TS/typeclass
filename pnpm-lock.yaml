@@ -21,8 +21,8 @@ devDependencies:
     specifier: ^0.1.9
     version: 0.1.9
   '@effect/docgen':
-    specifier: ^0.2.0
-    version: 0.2.0(@types/node@20.8.9)(typescript@5.2.2)
+    specifier: ^0.2.1
+    version: 0.2.1(@types/node@20.8.9)(typescript@5.2.2)
   '@effect/dtslint':
     specifier: ^0.0.3
     version: 0.0.3(typescript@5.2.2)
@@ -732,8 +732,8 @@ packages:
     hasBin: true
     dev: true
 
-  /@effect/docgen@0.2.0(@types/node@20.8.9)(typescript@5.2.2):
-    resolution: {integrity: sha512-QVQmQESrw9Ayn6LCxlnK+mvFCpkGGtUOtTnp4faTjJ5cC9sfII3pzzaQFXqFoJlsYA9qioJwUb4SBL6h4s7KHA==}
+  /@effect/docgen@0.2.1(@types/node@20.8.9)(typescript@5.2.2):
+    resolution: {integrity: sha512-GJbCkmY73KM3BDWI9/TjSuirY6FmWFyyA+GlluVTIv5mZ9zsuI2SyhHcBGnR2BFSRv5HQlWeiTMYk3tZEXk/pg==}
     engines: {node: '>=16.17.1'}
     hasBin: true
     peerDependencies:
@@ -747,6 +747,7 @@ packages:
       ts-morph: 19.0.0
       ts-node: 10.9.1(@types/node@20.8.9)(typescript@5.2.2)
       tsconfck: 2.1.2(typescript@5.2.2)
+      tsx: 3.14.0
       typescript: 5.2.2
     transitivePeerDependencies:
       - '@swc/core'
@@ -5923,6 +5924,17 @@ packages:
     dependencies:
       tslib: 1.14.1
       typescript: 5.2.2
+    dev: true
+
+  /tsx@3.14.0:
+    resolution: {integrity: sha512-xHtFaKtHxM9LOklMmJdI3BEnQq/D5F73Of2E1GDrITi9sgoVkvIsrQUTY1G8FlmGtA+awCI4EBlTRRYxkL2sRg==}
+    hasBin: true
+    dependencies:
+      esbuild: 0.18.20
+      get-tsconfig: 4.7.2
+      source-map-support: 0.5.21
+    optionalDependencies:
+      fsevents: 2.3.3
     dev: true
 
   /tty-table@4.2.2:
