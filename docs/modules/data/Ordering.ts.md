@@ -35,7 +35,7 @@ export declare const Monoid: monoid.Monoid<Ordering>
 **Example**
 
 ```ts
-import { Monoid } from '@effect/typeclass/data/Ordering'
+import { Monoid } from "@effect/typeclass/data/Ordering"
 
 assert.deepStrictEqual(Monoid.combine(Monoid.empty, -1), -1)
 assert.deepStrictEqual(Monoid.combine(Monoid.empty, 1), 1)
@@ -57,7 +57,7 @@ export declare const Semigroup: semigroup.Semigroup<Ordering>
 **Example**
 
 ```ts
-import { Semigroup } from '@effect/typeclass/data/Ordering'
+import { Semigroup } from "@effect/typeclass/data/Ordering"
 
 assert.deepStrictEqual(Semigroup.combine(0, -1), -1)
 assert.deepStrictEqual(Semigroup.combine(0, 1), 1)

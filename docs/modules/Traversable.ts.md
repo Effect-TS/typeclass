@@ -1,6 +1,6 @@
 ---
 title: Traversable.ts
-nav_order: 36
+nav_order: 37
 parent: Modules
 ---
 
@@ -32,16 +32,13 @@ export interface Traversable<T extends TypeLambda> extends TypeClass<T> {
   readonly traverse: <F extends TypeLambda>(
     F: Applicative<F>
   ) => {
-    <A, R, O, E, B>(f: (a: A) => Kind<F, R, O, E, B>): <TR, TO, TE>(
-      self: Kind<T, TR, TO, TE, A>
-    ) => Kind<F, R, O, E, Kind<T, TR, TO, TE, B>>
-    <TR, TO, TE, A, R, O, E, B>(self: Kind<T, TR, TO, TE, A>, f: (a: A) => Kind<F, R, O, E, B>): Kind<
-      F,
-      R,
-      O,
-      E,
-      Kind<T, TR, TO, TE, B>
-    >
+    <A, R, O, E, B>(
+      f: (a: A) => Kind<F, R, O, E, B>
+    ): <TR, TO, TE>(self: Kind<T, TR, TO, TE, A>) => Kind<F, R, O, E, Kind<T, TR, TO, TE, B>>
+    <TR, TO, TE, A, R, O, E, B>(
+      self: Kind<T, TR, TO, TE, A>,
+      f: (a: A) => Kind<F, R, O, E, B>
+    ): Kind<F, R, O, E, Kind<T, TR, TO, TE, B>>
   }
 }
 ```
@@ -103,16 +100,13 @@ export declare const traverseTap: <T extends TypeLambda>(
 ) => <F extends TypeLambda>(
   F: Applicative<F>
 ) => {
-  <A, R, O, E, B>(f: (a: A) => Kind<F, R, O, E, B>): <TR, TO, TE>(
-    self: Kind<T, TR, TO, TE, A>
-  ) => Kind<F, R, O, E, Kind<T, TR, TO, TE, A>>
-  <TR, TO, TE, A, R, O, E, B>(self: Kind<T, TR, TO, TE, A>, f: (a: A) => Kind<F, R, O, E, B>): Kind<
-    F,
-    R,
-    O,
-    E,
-    Kind<T, TR, TO, TE, A>
-  >
+  <A, R, O, E, B>(
+    f: (a: A) => Kind<F, R, O, E, B>
+  ): <TR, TO, TE>(self: Kind<T, TR, TO, TE, A>) => Kind<F, R, O, E, Kind<T, TR, TO, TE, A>>
+  <TR, TO, TE, A, R, O, E, B>(
+    self: Kind<T, TR, TO, TE, A>,
+    f: (a: A) => Kind<F, R, O, E, B>
+  ): Kind<F, R, O, E, Kind<T, TR, TO, TE, A>>
 }
 ```
 

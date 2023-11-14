@@ -210,7 +210,7 @@ Added in v1.0.0
 
 ```ts
 export interface IdentityTypeLambda extends TypeLambda {
-  readonly type: Identity<this['Target']>
+  readonly type: Identity<this["Target"]>
 }
 ```
 

@@ -1,6 +1,6 @@
 ---
 title: SemiProduct.ts
-nav_order: 35
+nav_order: 36
 parent: Modules
 ---
 
@@ -60,11 +60,10 @@ Added in v1.0.0
 export declare const andThenBind: <F extends TypeLambda>(
   F: SemiProduct<F>
 ) => {
-  <N extends string, A extends object, R2, O2, E2, B>(name: Exclude<N, keyof A>, that: Kind<F, R2, O2, E2, B>): <
-    R1,
-    O1,
-    E1
-  >(
+  <N extends string, A extends object, R2, O2, E2, B>(
+    name: Exclude<N, keyof A>,
+    that: Kind<F, R2, O2, E2, B>
+  ): <R1, O1, E1>(
     self: Kind<F, R1, O1, E1, A>
   ) => Kind<F, R1 & R2, O2 | O1, E2 | E1, { [K in N | keyof A]: K extends keyof A ? A[K] : B }>
   <R1, O1, E1, A extends object, N extends string, R2, O2, E2, B>(
@@ -111,7 +110,9 @@ Appends an element to the end of a tuple.
 export declare const appendElement: <F extends TypeLambda>(
   F: SemiProduct<F>
 ) => {
-  <R2, O2, E2, B>(that: Kind<F, R2, O2, E2, B>): <R1, O1, E1, A extends readonly any[]>(
+  <R2, O2, E2, B>(
+    that: Kind<F, R2, O2, E2, B>
+  ): <R1, O1, E1, A extends readonly any[]>(
     self: Kind<F, R1, O1, E1, A>
   ) => Kind<F, R1 & R2, O2 | O1, E2 | E1, [...A, B]>
   <R1, O1, E1, A extends readonly any[], R2, O2, E2, B>(

@@ -52,7 +52,7 @@ export declare const MonoidMax: monoid.Monoid<number>
 **Example**
 
 ```ts
-import { MonoidMax } from '@effect/typeclass/data/Number'
+import { MonoidMax } from "@effect/typeclass/data/Number"
 
 assert.deepStrictEqual(MonoidMax.combine(2, 3), 3)
 assert.deepStrictEqual(MonoidMax.combine(2, MonoidMax.empty), 2)
@@ -75,7 +75,7 @@ export declare const MonoidMin: monoid.Monoid<number>
 **Example**
 
 ```ts
-import { MonoidMin } from '@effect/typeclass/data/Number'
+import { MonoidMin } from "@effect/typeclass/data/Number"
 
 assert.deepStrictEqual(MonoidMin.combine(2, 3), 2)
 assert.deepStrictEqual(MonoidMin.combine(2, MonoidMin.empty), 2)
@@ -98,7 +98,7 @@ export declare const MonoidMultiply: monoid.Monoid<number>
 **Example**
 
 ```ts
-import { MonoidMultiply } from '@effect/typeclass/data/Number'
+import { MonoidMultiply } from "@effect/typeclass/data/Number"
 
 assert.deepStrictEqual(MonoidMultiply.combine(2, 3), 6)
 assert.deepStrictEqual(MonoidMultiply.combine(2, MonoidMultiply.empty), 2)
@@ -121,7 +121,7 @@ export declare const MonoidSum: monoid.Monoid<number>
 **Example**
 
 ```ts
-import { MonoidSum } from '@effect/typeclass/data/Number'
+import { MonoidSum } from "@effect/typeclass/data/Number"
 
 assert.deepStrictEqual(MonoidSum.combine(2, 3), 5)
 assert.deepStrictEqual(MonoidSum.combine(2, MonoidSum.empty), 2)
@@ -142,7 +142,7 @@ export declare const SemigroupMax: semigroup.Semigroup<number>
 **Example**
 
 ```ts
-import { SemigroupMax } from '@effect/typeclass/data/Number'
+import { SemigroupMax } from "@effect/typeclass/data/Number"
 
 assert.deepStrictEqual(SemigroupMax.combine(2, 3), 3)
 ```
@@ -162,7 +162,7 @@ export declare const SemigroupMin: semigroup.Semigroup<number>
 **Example**
 
 ```ts
-import { SemigroupMin } from '@effect/typeclass/data/Number'
+import { SemigroupMin } from "@effect/typeclass/data/Number"
 
 assert.deepStrictEqual(SemigroupMin.combine(2, 3), 2)
 ```
@@ -182,7 +182,7 @@ export declare const SemigroupMultiply: semigroup.Semigroup<number>
 **Example**
 
 ```ts
-import { SemigroupMultiply } from '@effect/typeclass/data/Number'
+import { SemigroupMultiply } from "@effect/typeclass/data/Number"
 
 assert.deepStrictEqual(SemigroupMultiply.combine(2, 3), 6)
 ```
@@ -202,7 +202,7 @@ export declare const SemigroupSum: semigroup.Semigroup<number>
 **Example**
 
 ```ts
-import { SemigroupSum } from '@effect/typeclass/data/Number'
+import { SemigroupSum } from "@effect/typeclass/data/Number"
 
 assert.deepStrictEqual(SemigroupSum.combine(2, 3), 5)
 ```
