@@ -95,7 +95,7 @@ export declare const SemigroupEqv: semigroup.Semigroup<boolean>
 **Example**
 
 ```ts
-import { SemigroupEqv } from '@effect/typeclass/data/Boolean'
+import { SemigroupEqv } from "@effect/typeclass/data/Boolean"
 
 assert.deepStrictEqual(SemigroupEqv.combine(true, true), true)
 assert.deepStrictEqual(SemigroupEqv.combine(true, false), false)
@@ -118,7 +118,7 @@ export declare const SemigroupEvery: semigroup.Semigroup<boolean>
 **Example**
 
 ```ts
-import { SemigroupEvery } from '@effect/typeclass/data/Boolean'
+import { SemigroupEvery } from "@effect/typeclass/data/Boolean"
 
 assert.deepStrictEqual(SemigroupEvery.combine(true, true), true)
 assert.deepStrictEqual(SemigroupEvery.combine(true, false), false)
@@ -141,7 +141,7 @@ export declare const SemigroupSome: semigroup.Semigroup<boolean>
 **Example**
 
 ```ts
-import { SemigroupSome } from '@effect/typeclass/data/Boolean'
+import { SemigroupSome } from "@effect/typeclass/data/Boolean"
 
 assert.deepStrictEqual(SemigroupSome.combine(true, true), true)
 assert.deepStrictEqual(SemigroupSome.combine(true, false), true)
@@ -164,7 +164,7 @@ export declare const SemigroupXor: semigroup.Semigroup<boolean>
 **Example**
 
 ```ts
-import { SemigroupXor } from '@effect/typeclass/data/Boolean'
+import { SemigroupXor } from "@effect/typeclass/data/Boolean"
 
 assert.deepStrictEqual(SemigroupXor.combine(true, true), false)
 assert.deepStrictEqual(SemigroupXor.combine(true, false), true)

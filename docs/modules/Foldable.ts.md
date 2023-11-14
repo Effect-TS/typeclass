@@ -100,16 +100,15 @@ export declare const reduceKind: <F extends TypeLambda>(
 ) => <G extends TypeLambda>(
   G: Monad<G>
 ) => {
-  <B, A, R, O, E>(b: B, f: (b: B, a: A) => Kind<G, R, O, E, B>): <FR, FO, FE>(
-    self: Kind<F, FR, FO, FE, A>
-  ) => Kind<G, R, O, E, B>
-  <FR, FO, FE, A, B, R, O, E>(self: Kind<F, FR, FO, FE, A>, b: B, f: (b: B, a: A) => Kind<G, R, O, E, B>): Kind<
-    G,
-    R,
-    O,
-    E,
-    B
-  >
+  <B, A, R, O, E>(
+    b: B,
+    f: (b: B, a: A) => Kind<G, R, O, E, B>
+  ): <FR, FO, FE>(self: Kind<F, FR, FO, FE, A>) => Kind<G, R, O, E, B>
+  <FR, FO, FE, A, B, R, O, E>(
+    self: Kind<F, FR, FO, FE, A>,
+    b: B,
+    f: (b: B, a: A) => Kind<G, R, O, E, B>
+  ): Kind<G, R, O, E, B>
 }
 ```
 

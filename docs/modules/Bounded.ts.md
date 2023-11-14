@@ -91,7 +91,7 @@ Added in v1.0.0
 
 ```ts
 export interface BoundedTypeLambda extends TypeLambda {
-  readonly type: Bounded<this['Target']>
+  readonly type: Bounded<this["Target"]>
 }
 ```
 

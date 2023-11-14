@@ -1,6 +1,6 @@
 ---
 title: SemiApplicative.ts
-nav_order: 32
+nav_order: 33
 parent: Modules
 ---
 
@@ -53,16 +53,13 @@ export declare const lift2: <F extends TypeLambda>(
 ) => <A, B, C>(
   f: (a: A, b: B) => C
 ) => {
-  <R2, O2, E2>(that: Kind<F, R2, O2, E2, B>): <R1, O1, E1>(
-    self: Kind<F, R1, O1, E1, A>
-  ) => Kind<F, R1 & R2, O2 | O1, E2 | E1, C>
-  <R1, O1, E1, R2, O2, E2>(self: Kind<F, R1, O1, E1, A>, that: Kind<F, R2, O2, E2, B>): Kind<
-    F,
-    R1 & R2,
-    O1 | O2,
-    E1 | E2,
-    C
-  >
+  <R2, O2, E2>(
+    that: Kind<F, R2, O2, E2, B>
+  ): <R1, O1, E1>(self: Kind<F, R1, O1, E1, A>) => Kind<F, R1 & R2, O2 | O1, E2 | E1, C>
+  <R1, O1, E1, R2, O2, E2>(
+    self: Kind<F, R1, O1, E1, A>,
+    that: Kind<F, R2, O2, E2, B>
+  ): Kind<F, R1 & R2, O1 | O2, E1 | E2, C>
 }
 ```
 
@@ -90,16 +87,13 @@ Added in v1.0.0
 export declare const ap: <F extends TypeLambda>(
   F: SemiApplicative<F>
 ) => {
-  <R2, O2, E2, A>(that: Kind<F, R2, O2, E2, A>): <R1, O1, E1, B>(
-    self: Kind<F, R1, O1, E1, (a: A) => B>
-  ) => Kind<F, R1 & R2, O2 | O1, E2 | E1, B>
-  <R1, O1, E1, A, B, R2, O2, E2>(self: Kind<F, R1, O1, E1, (a: A) => B>, that: Kind<F, R2, O2, E2, A>): Kind<
-    F,
-    R1 & R2,
-    O1 | O2,
-    E1 | E2,
-    B
-  >
+  <R2, O2, E2, A>(
+    that: Kind<F, R2, O2, E2, A>
+  ): <R1, O1, E1, B>(self: Kind<F, R1, O1, E1, (a: A) => B>) => Kind<F, R1 & R2, O2 | O1, E2 | E1, B>
+  <R1, O1, E1, A, B, R2, O2, E2>(
+    self: Kind<F, R1, O1, E1, (a: A) => B>,
+    that: Kind<F, R2, O2, E2, A>
+  ): Kind<F, R1 & R2, O1 | O2, E1 | E2, B>
 }
 ```
 
@@ -113,16 +107,13 @@ Added in v1.0.0
 export declare const zipLeft: <F extends TypeLambda>(
   F: SemiApplicative<F>
 ) => {
-  <R2, O2, E2, _>(that: Kind<F, R2, O2, E2, _>): <R1, O1, E1, A>(
-    self: Kind<F, R1, O1, E1, A>
-  ) => Kind<F, R1 & R2, O2 | O1, E2 | E1, A>
-  <R1, O1, E1, A, R2, O2, E2, _>(self: Kind<F, R1, O1, E1, A>, that: Kind<F, R2, O2, E2, _>): Kind<
-    F,
-    R1 & R2,
-    O1 | O2,
-    E1 | E2,
-    A
-  >
+  <R2, O2, E2, _>(
+    that: Kind<F, R2, O2, E2, _>
+  ): <R1, O1, E1, A>(self: Kind<F, R1, O1, E1, A>) => Kind<F, R1 & R2, O2 | O1, E2 | E1, A>
+  <R1, O1, E1, A, R2, O2, E2, _>(
+    self: Kind<F, R1, O1, E1, A>,
+    that: Kind<F, R2, O2, E2, _>
+  ): Kind<F, R1 & R2, O1 | O2, E1 | E2, A>
 }
 ```
 
@@ -136,16 +127,13 @@ Added in v1.0.0
 export declare const zipRight: <F extends TypeLambda>(
   F: SemiApplicative<F>
 ) => {
-  <R2, O2, E2, B>(that: Kind<F, R2, O2, E2, B>): <R1, O1, E1, _>(
-    self: Kind<F, R1, O1, E1, _>
-  ) => Kind<F, R1 & R2, O2 | O1, E2 | E1, B>
-  <R1, O1, E1, _, R2, O2, E2, B>(self: Kind<F, R1, O1, E1, _>, that: Kind<F, R2, O2, E2, B>): Kind<
-    F,
-    R1 & R2,
-    O1 | O2,
-    E1 | E2,
-    B
-  >
+  <R2, O2, E2, B>(
+    that: Kind<F, R2, O2, E2, B>
+  ): <R1, O1, E1, _>(self: Kind<F, R1, O1, E1, _>) => Kind<F, R1 & R2, O2 | O1, E2 | E1, B>
+  <R1, O1, E1, _, R2, O2, E2, B>(
+    self: Kind<F, R1, O1, E1, _>,
+    that: Kind<F, R2, O2, E2, B>
+  ): Kind<F, R1 & R2, O1 | O2, E1 | E2, B>
 }
 ```
 
@@ -161,9 +149,10 @@ Zips two `F` values together using a provided function, returning a new `F` of t
 export declare const zipWith: <F extends TypeLambda>(
   F: SemiApplicative<F>
 ) => {
-  <R2, O2, E2, B, A, C>(that: Kind<F, R2, O2, E2, B>, f: (a: A, b: B) => C): <R1, O1, E1>(
-    self: Kind<F, R1, O1, E1, A>
-  ) => Kind<F, R1 & R2, O2 | O1, E2 | E1, C>
+  <R2, O2, E2, B, A, C>(
+    that: Kind<F, R2, O2, E2, B>,
+    f: (a: A, b: B) => C
+  ): <R1, O1, E1>(self: Kind<F, R1, O1, E1, A>) => Kind<F, R1 & R2, O2 | O1, E2 | E1, C>
   <R1, O1, E1, A, R2, O2, E2, B, C>(
     self: Kind<F, R1, O1, E1, A>,
     that: Kind<F, R2, O2, E2, B>,

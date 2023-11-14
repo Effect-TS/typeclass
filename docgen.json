@@ -2,27 +2,33 @@
   "$schema": "node_modules/@effect/docgen/schema.json",
   "exclude": ["src/internal/**/*.ts"],
   "parseCompilerOptions": {
-    "strict": true,
     "noEmit": true,
-    "target": "ES2021",
-    "lib": ["ES2021"],
+    "strict": true,
+    "skipLibCheck": true,
+    "moduleResolution": "Bundler",
+    "target": "ES2022",
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
     "paths": {
-      "@effect/typeclass": ["./src/index.ts"],
-      "@effect/typeclass/test/*": ["./test/*"],
-      "@effect/typeclass/examples/*": ["./examples/*"],
-      "@effect/typeclass/*": ["./src/*"]
+      "@effect/typeclass": ["./src/index.js"],
+      "@effect/typeclass/*": ["./src/*.js"]
     }
   },
   "examplesCompilerOptions": {
-    "strict": true,
     "noEmit": true,
-    "target": "ES2021",
-    "lib": ["ES2021"],
+    "strict": true,
+    "skipLibCheck": true,
+    "moduleResolution": "Bundler",
+    "target": "ES2022",
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
     "paths": {
-      "@effect/typeclass": ["../../src/index.ts"],
-      "@effect/typeclass/test/*": ["../../test/*"],
-      "@effect/typeclass/examples/*": ["../../examples/*"],
-      "@effect/typeclass/*": ["../../src/*"]
+      "@effect/typeclass": ["../../src/index.js"],
+      "@effect/typeclass/*": ["../../src/*.js"]
     }
   }
 }

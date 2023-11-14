@@ -1,6 +1,6 @@
 ---
 title: Semigroup.ts
-nav_order: 34
+nav_order: 35
 parent: Modules
 ---
 
@@ -221,7 +221,7 @@ Added in v1.0.0
 
 ```ts
 export interface SemigroupTypeLambda extends TypeLambda {
-  readonly type: Semigroup<this['Target']>
+  readonly type: Semigroup<this["Target"]>
 }
 ```
 

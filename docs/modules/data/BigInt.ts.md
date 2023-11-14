@@ -39,7 +39,7 @@ export declare const MonoidMultiply: monoid.Monoid<bigint>
 **Example**
 
 ```ts
-import { MonoidMultiply } from '@effect/typeclass/data/BigInt'
+import { MonoidMultiply } from "@effect/typeclass/data/BigInt"
 
 assert.deepStrictEqual(MonoidMultiply.combine(2n, 3n), 6n)
 assert.deepStrictEqual(MonoidMultiply.combine(2n, MonoidMultiply.empty), 2n)
@@ -62,7 +62,7 @@ export declare const MonoidSum: monoid.Monoid<bigint>
 **Example**
 
 ```ts
-import { MonoidSum } from '@effect/typeclass/data/BigInt'
+import { MonoidSum } from "@effect/typeclass/data/BigInt"
 
 assert.deepStrictEqual(MonoidSum.combine(2n, 3n), 5n)
 assert.deepStrictEqual(MonoidSum.combine(2n, MonoidSum.empty), 2n)
@@ -83,7 +83,7 @@ export declare const SemigroupMax: semigroup.Semigroup<bigint>
 **Example**
 
 ```ts
-import { SemigroupMax } from '@effect/typeclass/data/BigInt'
+import { SemigroupMax } from "@effect/typeclass/data/BigInt"
 
 assert.deepStrictEqual(SemigroupMax.combine(2n, 3n), 3n)
 ```
@@ -103,7 +103,7 @@ export declare const SemigroupMin: semigroup.Semigroup<bigint>
 **Example**
 
 ```ts
-import { SemigroupMin } from '@effect/typeclass/data/BigInt'
+import { SemigroupMin } from "@effect/typeclass/data/BigInt"
 
 assert.deepStrictEqual(SemigroupMin.combine(2n, 3n), 2n)
 ```
@@ -135,7 +135,7 @@ export declare const SemigroupSum: semigroup.Semigroup<bigint>
 **Example**
 
 ```ts
-import { SemigroupSum } from '@effect/typeclass/data/BigInt'
+import { SemigroupSum } from "@effect/typeclass/data/BigInt"
 
 assert.deepStrictEqual(SemigroupSum.combine(2n, 3n), 5n)
 ```
